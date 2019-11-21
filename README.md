@@ -1,21 +1,21 @@
-# Todo-flask-mysql
-Example on how to set up a multi-containers platform using Python-Flask and MySQL database 
+# Todo-flask-postgresql
+Example on how to set up a multi-containers platform using Python-Flask and postgres database 
 
 ## How to set up the environment platform
-Start a MySQL database container   
+Start a Postgresql database container   
 ```code
-docker run -d -it --name db -e MYSQL_ROOT_PASSWORD=password -p 3306:3306 \
--v /var/log/mysql-db:/var/log/mysql astondevops/docker-mysql-5.6
+docker run -d -it --name db -e POSTGRES_PASSWORD=password  -p 6432:5432 \
+ systemdevformations/postgresql-alpine
 ```
-Launch a PhpMyAdmin container connected to the MySQL database
+Launch a PgAdmin 4 container connected to the Postgresql database
 ```code
-docker run -d -it --name phpmyadmin --link db:mysql \
- -e MYSQL_USERNAME=root -p 8181:80 nazarpc/phpmyadmin
+docker run -d --name pgadmin -p 20100:80 -e PGADMIN_DEFAULT_EMAIL=ambient-it@gmail.com \
+-e PGADMIN_DEFAULT_PASSWORD=p4ssw0rd dpage/pgadmin4
 ```
 Get this repository  
-```git clone https://github.com/system-dev-formations/todo-flask-mysql.git```  
+```git clone https://github.com/system-dev-formations/todo-flask-postgres.git```  
 Build todo-sql image  
-```cd todo-flask-mysql```  
+```cd todo-flask-postgres```  
 ```docker build -t todo-sql . ```  
 In your Goland Intellij IDE set a connection to the MySQL database   
 create a database named ```tododb```      
