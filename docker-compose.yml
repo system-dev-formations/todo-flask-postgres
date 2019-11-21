@@ -1,0 +1,46 @@
+version: '3'
+
+networks:
+  lan_network:
+    driver: bridge
+
+services:
+  todoapplication:
+      hostname: todo
+      build: .
+      ports:
+        - 5000:5000
+      links:
+        - db:mysql
+      depends_on:
+        - db
+      networks:
+        -  lan_network
+
+  phpmyadmin:
+    hostname: phpmyadmin
+    image: nazarpc/phpmyadmin
+    links:
+      - db:mysql
+    depends_on:
+      - db
+    ports:
+      - 8181:80
+    environment:
+      MYSQL_USERNAME: root
+      MYSQL_ROOT_PASSWORD: password
+    networks:
+      - lan_network
+
+  db:
+    hostname: mysql
+    image: astondevops/docker-mysql-5.6
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - /var/log/mysql-db:/var/log/mysql
+      - /var/lib/mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
+    networks:
+      -  lan_network
