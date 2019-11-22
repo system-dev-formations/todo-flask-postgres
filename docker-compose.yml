@@ -29,6 +29,8 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: ambient-it@gmail.com
       PGADMIN_DEFAULT_PASSWORD: p4ssw0rd
+    volumes:
+      - /opt/pgadmin:/var/lib/pgadmin
     networks:
       - lan_network
 
