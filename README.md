@@ -47,7 +47,7 @@ pip3 install docker-compose
 ```
 ## On Centos
 ```code 
-sudo yum install pythonn3
+sudo yum install python3
 sudo yum install python3-pip
 python3 -m venv venv
 source venv/bin/activate
