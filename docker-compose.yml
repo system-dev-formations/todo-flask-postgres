@@ -34,7 +34,7 @@ services:
 
   db:
     hostname: postgres
-    image:
+    image: systemdevformations/postgresql-alpine
     environment:
       POSTGRES_PASSWORD: password
     volumes:
