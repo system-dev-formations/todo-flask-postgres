@@ -2,7 +2,9 @@
 
 -- DROP TABLE public.todos;
 
-create table todos
+SET search_path to tododb;
+
+create table public.todos
 (
     todo_id  serial      not null
         constraint firstkey
@@ -13,7 +15,5 @@ create table todos
     pub_date date        not null
 );
 
-alter table todos
+alter table public.todos
     owner to postgres;
-
-INSERT INTO public.todos (todo_id, title, text, done, pub_date) VALUES (1, 'CrunchyDevops', 'test', 'false', '2019-11-22');
