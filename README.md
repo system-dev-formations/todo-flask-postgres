@@ -9,17 +9,19 @@ docker run -d -it --name db -e POSTGRES_PASSWORD=password  -p 6432:5432 \
 ```
 Launch a PgAdmin 4 container connected to the Postgresql database
 ```code
-docker run -d --name pgadmin -p 20100:80 -e PGADMIN_DEFAULT_EMAIL=ambient-it@gmail.com \
+docker run -d --name pgadmin -p 20100:80 --link db:postgres -e PGADMIN_DEFAULT_EMAIL=ambient-it@gmail.com \
 -e PGADMIN_DEFAULT_PASSWORD=p4ssw0rd dpage/pgadmin4
 ```
+In pgAdmin4  set a connection to the postgresql database   
+create a database named ```tododb```      
+and run the script ./sql/todos.sql  in tododb database
+
 Get this repository  
 ```git clone https://github.com/system-dev-formations/todo-flask-postgres.git```  
 Build todo-sql image  
 ```cd todo-flask-postgres```  
 ```docker build -t todo-sql . ```  
-In your Goland Intellij IDE set a connection to the MySQL database   
-create a database named ```tododb```      
-and run the script ./sql/todos.sql   
+  
 After type in your shell console  
 ```code 
 docker run -it --name todo --link db:todo -p 5000:5000 todo-sql
@@ -35,8 +37,9 @@ We are going to setup a python virtualenv
 ## On ubuntu
 ### Packages, virtualenv, activate  
 ```code
-apt-get install python3
-apt-get install python3-pip
+sudo apt-get install python3
+sudo apt-get install python3-pip
+sudo apt-get install python3-venv
 python3 -m venv venv
 source venv/bin/activate
 ```
