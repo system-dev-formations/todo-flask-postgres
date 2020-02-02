@@ -1,5 +1,6 @@
 # Todo-flask-postgresql
 Example on how to set up a multi-containers platform using Python-Flask and postgres database 
+and pgadmin4
 
 ## How to set up the environment platform
 Start a Postgresql database container   
@@ -24,7 +25,7 @@ Build todo-sql image
   
 After type in your shell console  
 ```code 
-docker run -it --name todo --link db:todo -p 5000:5000 todo-sql
+docker run -it --name todo --link db:todo -p 16000:5000 todo-sql
 ```
 
 # Test
