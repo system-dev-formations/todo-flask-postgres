@@ -4,12 +4,12 @@ and pgadmin4
 
 ## How to set up the environment platform
 Start a Postgresql database container   
-```code
+```shell script
 docker run -d -it --name db -e POSTGRES_PASSWORD=password  -p 6432:5432 \
  systemdevformations/postgresql-alpine
 ```
 Launch a PgAdmin 4 container connected to the Postgresql database
-```code
+```shell script
 docker run -d --name pgadmin -p 20100:80 --link db:postgres -e PGADMIN_DEFAULT_EMAIL=ambient-it@gmail.com \
 -e PGADMIN_DEFAULT_PASSWORD=p4ssw0rd dpage/pgadmin4
 ```
@@ -30,7 +30,7 @@ docker run -it --name todo --link db:todo -p 16000:5000 todo-sql
 
 # Test
 Bring up your favorite browser   
-``` http://localhost:5000/```
+``` http://localhost:16000/```
 and check 
 
 # Docker-compose version 
