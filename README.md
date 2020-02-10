@@ -1,6 +1,6 @@
 # Todo-flask-postgresql
-Example on how to set up a multi-containers platform using Python-Flask and postgres database 
-and pgadmin4
+Example on how to set up a multi-containers platform using Python-Flask, postgresql12 database 
+and Pgadmin4
 
 ## How to set up the environment platform
 Start a Postgresql database container   

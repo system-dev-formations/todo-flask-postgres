@@ -2,8 +2,6 @@
 
 -- DROP TABLE public.todos;
 
-SET search_path to tododb;
-
 create table todos
 (
     todo_id  serial      not null
@@ -18,5 +16,5 @@ create table todos
 alter table todos
     owner to postgres;
 
-INSERT INTO public.todos (todo_id, title, text, done, pub_date) VALUES (1, 'test', 'test', 'false', '2020-02-09');
-INSERT INTO public.todos (todo_id, title, text, done, pub_date) VALUES (2, 'flask', 'flask is the best', 'false', '2020-02-10');
+INSERT INTO todos (todo_id, title, text, done, pub_date) VALUES (1, 'test', 'test', 'false', '2020-02-09');
+INSERT INTO todos (todo_id, title, text, done, pub_date) VALUES (2, 'flask', 'flask is the best', 'false', '2020-02-10');
