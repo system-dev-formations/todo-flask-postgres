@@ -5,17 +5,20 @@ and pgadmin4
 ## How to set up the environment platform
 Start a Postgresql database container   
 ```shell script
-docker run -d -it --name db -e POSTGRES_PASSWORD=password  -p 6432:5432 \
- systemdevformations/postgresql-alpine
+docker run -d -it --name db -e POSTGRES_PASSWORD=password  -v /opt/postgres:/var/lib/postgresql/data \
+  -p 6432:5432  systemdevformations/postgresql-alpine
 ```
 Launch a PgAdmin 4 container connected to the Postgresql database
 ```shell script
 docker run -d --name pgadmin -p 20100:80 --link db:postgres -e PGADMIN_DEFAULT_EMAIL=ambient-it@gmail.com \
 -e PGADMIN_DEFAULT_PASSWORD=p4ssw0rd dpage/pgadmin4
 ```
+Study the way how to set up the database connection using the Docker internal DNS container name 
+as an IP address entry. 
+
 In pgAdmin4  set a connection to the postgresql database   
 create a database named ```tododb```      
-and run the script ./sql/todos.sql  in tododb database
+and run the script ./sql/todos.sql  against the tododb database
 
 Get this repository  
 ```git clone https://github.com/system-dev-formations/todo-flask-postgres.git```  
@@ -25,7 +28,7 @@ Build todo-sql image
   
 After type in your shell console  
 ```code 
-docker run -it --name todo --link db:todo -p 16000:5000 todo-sql
+docker run -it -d --name todo --link db:todo -p 16000:5000 todo-sql
 ```
 
 # Test
@@ -63,5 +66,3 @@ In the directory todo-flask-mysql, hit
 ```docker-compose up ```  
 or  
 ```docker-compose up -d```
-
-
