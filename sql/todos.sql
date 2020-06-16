@@ -16,5 +16,5 @@ create table todos
 alter table todos
     owner to postgres;
 
-INSERT INTO todos (todo_id, title, text, done, pub_date) VALUES (1, 'test', 'test', 'false', '2020-02-09');
-INSERT INTO todos (todo_id, title, text, done, pub_date) VALUES (2, 'flask', 'flask is the best', 'false', '2020-02-10');
+INSERT INTO todos ( title, text, done, pub_date) VALUES ('test', 'test', 'false', '2020-02-09');
+INSERT INTO todos ( title, text, done, pub_date) VALUES ('flask', 'flask is the best', 'false', '2020-02-10');
