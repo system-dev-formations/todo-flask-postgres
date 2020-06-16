@@ -1,5 +1,5 @@
 # Todo-flask-postgresql
-Example on how to set up a multi-containers platform using Python-Flask, postgresql12 database 
+Example on how to set up a multi-containers platform using Python-Flask-SqlAlchemy, postgresql12 database 
 and Pgadmin4
 
 Get this repository  
@@ -20,9 +20,10 @@ docker run -d --name pgadmin -p 20100:80 --link db:postgres -e PGADMIN_DEFAULT_E
 Study the way how to set up the database connection using the Docker internal DNS container name 
 as an IP address entry. 
 
-In pgAdmin4  set a connection to the postgresql database   
+In pgAdmin4  set a connection to the postgresql database, username is ambient-it@gmail.com and the password is
+p4ssw0rd   
 create a database named ```tododb```      
-and run the script ./sql/todos.sql  against the tododb database
+and run the script ```./sql/todos.sql```  against the ```tododb``` database
 
   
 Build todo-sql image  
@@ -37,7 +38,7 @@ docker run -it -d --name todo --link db:todo -p 5000:5000 todo-sql
 # Test
 Bring up your favorite browser   
 ``` http://localhost:16000/```
-and check 
+and check te connectivity
 
 # Docker-compose version 
 We are going to setup a python virtualenv 
