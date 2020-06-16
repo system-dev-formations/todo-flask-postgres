@@ -28,16 +28,16 @@ and run the script ```./sql/todos.sql```  against the ```tododb``` database
   
 Build todo-sql image  
 ```cd todo-flask-postgres```  
-```docker build -t todo-sql . ```  
+```docker build -t todo-postgres . ```  
   
 After type in your shell console  
 ```code 
-docker run -it -d --name todo --link db:todo -p 5000:5000 todo-sql
+docker run -it -d --name todo --link db:todo -p 5000:5000 todo-postgres
 ```
 
 # Test
 Bring up your favorite browser   
-``` http://localhost:16000/```
+``` http://localhost:5000/```
 and check te connectivity
 
 # Docker-compose version 
