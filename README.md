@@ -2,6 +2,10 @@
 Example on how to set up a multi-containers platform using Python-Flask, postgresql12 database 
 and Pgadmin4
 
+Get this repository  
+```git clone https://github.com/system-dev-formations/todo-flask-postgres.git```  
+Do a fork and git clone in your system or in your Vm
+
 ## How to set up the environment platform
 Start a Postgresql database container   
 ```shell script
@@ -20,15 +24,14 @@ In pgAdmin4  set a connection to the postgresql database
 create a database named ```tododb```      
 and run the script ./sql/todos.sql  against the tododb database
 
-Get this repository  
-```git clone https://github.com/system-dev-formations/todo-flask-postgres.git```  
+  
 Build todo-sql image  
 ```cd todo-flask-postgres```  
 ```docker build -t todo-sql . ```  
   
 After type in your shell console  
 ```code 
-docker run -it -d --name todo --link db:todo -p 16000:5000 todo-sql
+docker run -it -d --name todo --link db:todo -p 5000:5000 todo-sql
 ```
 
 # Test
