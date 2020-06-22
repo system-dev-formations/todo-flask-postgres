@@ -49,7 +49,7 @@ sudo apt-get install python3
 sudo apt-get install python3-pip
 sudo apt-get install python3-venv
 sudo apt-get -y install build-essential
-sudo apt-get install python3-dev libxml2-dev libxslt-dev
+sudo apt-get install python3-dev libxml2-dev libxslt-dev libffi-dev
 python3 -m venv venv
 source venv/bin/activate
 ```
