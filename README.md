@@ -4,7 +4,7 @@ and Pgadmin4
 
 Get this repository  
 ```git clone https://github.com/system-dev-formations/todo-flask-postgres.git```  
-Do a fork and git clone in your system or in your Vm
+Do a fork and git clone in your system and in your Vm
 
 ## How to set up the environment platform
 Start a Postgresql database container   
@@ -18,7 +18,7 @@ docker run -d --name pgadmin -p 20100:80 --link db:postgres -e PGADMIN_DEFAULT_E
 -e PGADMIN_DEFAULT_PASSWORD=p4ssw0rd dpage/pgadmin4
 ```
 Study the way how to set up the database connection using the Docker internal DNS container name 
-as an IP address entry. 
+as an IP address entry. So for connecting to postgresql database use the container name db and its port number 5432.
 
 In pgAdmin4  set a connection to the postgresql database, username is ambient-it@gmail.com and the password is
 p4ssw0rd   
