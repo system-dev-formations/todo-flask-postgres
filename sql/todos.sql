@@ -10,11 +10,11 @@ create table todos
     title    varchar(60) not null,
     text     varchar(80) not null,
     done     varchar(50) not null,
-    pub_date date        not null
+    pub_date timestamp   default CURRENT_TIMESTAMP
 );
 
 alter table todos
     owner to postgres;
 
-INSERT INTO todos ( title, text, done, pub_date) VALUES ('test', 'test', 'false', '2020-02-09');
-INSERT INTO todos ( title, text, done, pub_date) VALUES ('flask', 'flask is the best', 'false', '2020-02-10');
+INSERT INTO todos ( title, text, done) VALUES ('test', 'test', 'false');
+INSERT INTO todos ( title, text, done) VALUES ('flask', 'flask is the best', 'false');
