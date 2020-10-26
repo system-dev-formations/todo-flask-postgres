@@ -1,4 +1,4 @@
-# Todo-flask-postgresql
+# Todo-flask-postgres
 Example on how to set up a multi-containers platform using Python-Flask-SqlAlchemy, postgresql12 database 
 and Pgadmin4
 
@@ -7,12 +7,12 @@ Get this repository
 Do a fork and git clone in your system and in your Vm
 
 ## How to set up the environment platform
-Start a Postgresql database container   
+Start the Postgresql database container   
 ```shell script
 docker run -d -it --name db -e POSTGRES_PASSWORD=password  -v /opt/postgres:/var/lib/postgresql/data \
-  -p 6432:5432  systemdevformations/postgresql-alpine
+  -p 6432:5432  systemdevformations/docker-postgres12
 ```
-Launch a PgAdmin 4 container connected to the Postgresql database
+Launch the PgAdmin 4 container connected to the Postgresql database
 ```shell script
 docker run -d --name pgadmin -p 20100:80 --link db:postgres -e PGADMIN_DEFAULT_EMAIL=ambient-it@gmail.com \
 -e PGADMIN_DEFAULT_PASSWORD=p4ssw0rd dpage/pgadmin4
