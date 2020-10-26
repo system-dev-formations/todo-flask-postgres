@@ -53,7 +53,7 @@ sudo apt-get install python3-dev libxml2-dev libxslt-dev libffi-dev
 python3 -m venv venv
 source venv/bin/activate
 ```
-### docker-compose set up
+### docker-compose setup
 ```code 
 pip3 install wheel
 
