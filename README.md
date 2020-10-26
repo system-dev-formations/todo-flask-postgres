@@ -4,7 +4,7 @@ and Pgadmin4
 
 Get this repository  
 ```git clone https://github.com/system-dev-formations/todo-flask-postgres.git```  
-Do a fork and git clone in your system and in your Vm
+Do a fork and git clone in your local host where your IDE is installed and in your Vm
 
 ## How to set up the environment platform
 Start the Postgresql database container   
