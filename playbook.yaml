@@ -1,0 +1,48 @@
+---
+- hosts: all
+  tasks:
+    - name: Run all containers
+      docker_container:
+        name: 'db'
+        image: systemdevformations/docker-postgres12
+        state: 'started'
+        env:
+          POSTGRESQL_PASSWORD: 'password'
+        ports:
+          - "5432:5432"
+      register: db_cont_metadata
+    - name: Get infos on container
+      docker_container_info:
+        name: 'db'
+      register: result
+    - name: Does container exist?
+      debug:
+        msg: "The container {{ 'exist' if result.exists else 'does not exist' }}"
+    - name: IP address
+      debug:
+        msg: "{{result.container.NetworkSettings.IPAddress}}"
+    - name: wait for postgres to accept connections
+      wait_for:
+        host: "{{ result.container.NetworkSettings.IPAddress }}"
+        port: 5432
+        state: 'drained'
+        connect_timeout: 1
+        timeout: 30
+      register: postgresql_running
+      until: postgresql_running is success
+      retries: 10
+    - name: Add container db to inventory
+      add_host:
+        name: db
+        ansible_connection: docker
+      changed_when: false
+    - name: run command in container db
+      delegate_to: db
+      raw: ls -alrt
+      register: result
+    - name: Return value
+      debug:
+        var: result
+        verbosity: 2
+
+

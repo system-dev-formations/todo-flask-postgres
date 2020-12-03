@@ -9,7 +9,7 @@ Do a fork and git clone in your local host where your IDE is installed and in yo
 ## How to set up the environment platform
 Start the Postgresql database container   
 ```shell script
-docker run -d -it --name db -e POSTGRES_PASSWORD=password  -v /opt/postgres:/var/lib/postgresql/data \
+docker run -d --name db -e POSTGRES_PASSWORD=password  -v /opt/postgres:/var/lib/postgresql/data \
   -p 6432:5432  systemdevformations/docker-postgres12
 ```
 Launch the PgAdmin 4 container connected to the Postgresql database
@@ -22,7 +22,7 @@ as an IP address entry. So for connecting to postgresql database use the contain
 
 In pgAdmin4  set a connection to the postgresql database, username is ambient-it@gmail.com and the password is
 p4ssw0rd   
-create a database named ```tododb```      
+create a database named ``` create database tododb```      
 and run the script ```./sql/todos.sql```  against the ```tododb``` database
 
   

@@ -14,6 +14,8 @@ services:
         - db:postgres
       depends_on:
         - db
+      volumes:
+        - ./sql:/tmp
       networks:
         -  lan_network
 
