@@ -66,7 +66,7 @@ sudo yum install python3-pip
 python3 -m venv venv
 source venv/bin/activate
 pip3 install docker-compose
-pip3 install --upgrade pip
+
 ```
 ## Execute
 In the directory todo-flask-mysql, type   

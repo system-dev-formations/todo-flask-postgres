@@ -31,7 +31,7 @@
       register: postgresql_running
       until: postgresql_running is success
       retries: 10
-    - name: Add container db to inventory
+    - name: Add container db to in-memory inventory
       add_host:
         name: db
         ansible_connection: docker
