@@ -20,6 +20,39 @@ docker run -d --name pgadmin -p 20100:80 --link db:postgres -e PGADMIN_DEFAULT_E
 Study the way how to set up the database connection using the Docker internal DNS container name 
 as an IP address entry. So for connecting to postgresql database use the container name db and its port number 5432.
 
+## Different ways for installing the tododb database
+
+### Using the command line interface (CLI)
+```shell
+cd todo-flask-postgres
+cd sql
+docker cp todo.sql db:/tmp
+docker exec -it db /bin/ash
+cd tmp
+ls 
+su postgres
+create database tododb;
+\c tododb
+\i todos.sql
+select * from todos;
+\q 
+exit
+```
+
+### Using Jetbrains
+Click on the tab named Database on the right hand-side of your Jetbrains IDE    
+click on the sign + and select datasource -> PostgreSQL  
+enter a name, ip address, username postgres , password: password     
+Hit test connection button  
+After that a console screen is opened  
+Type ```CREATE DATABASE tododb;```  
+Edit the file ```todos.sql``` in your project file the sql directory   
+Put your mouse cursor in the file and right click , select run todos
+Press the sign + on target datasource and select tododb    
+and press run   
+
+
+### Using pgadmin4
 In pgAdmin4  set a connection to the postgresql database, username is ambient-it@gmail.com and the password is
 p4ssw0rd   
 create a database named ``` create database tododb```      
