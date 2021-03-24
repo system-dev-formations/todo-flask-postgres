@@ -1,7 +1,7 @@
 ---
 - hosts: all
   tasks:
-    - name: Run all containers
+    - name: Start postgresql 12.2
       docker_container:
         name: 'db'
         image: systemdevformations/docker-postgres12
@@ -10,6 +10,9 @@
           POSTGRESQL_PASSWORD: 'password'
         ports:
           - "6432:5432"
+        volumes:
+          - "/opt/postgres:/var/lib/postgresql/data"
+          #- "./sql:/tmp"
       register: db_cont_metadata
     - name: Get infos on container
       docker_container_info:
@@ -25,12 +28,14 @@
       wait_for:
         host: "{{ result.container.NetworkSettings.IPAddress }}"
         port: 5432
-        state: 'drained'
+        state: 'drained' # will check for active connection
         connect_timeout: 1
-        timeout: 30
+        timeout: 30  # maximum number of seconds to wait for
       register: postgresql_running
       until: postgresql_running is success
       retries: 10
+    - name: Set up todos.sql script in docker container
+      shell: docker cp ./sql/todos.sql db:/tmp
     - name: Add container db to in-memory inventory
       add_host:
         name: db
@@ -38,11 +43,62 @@
       changed_when: false
     - name: run command in container db
       delegate_to: db
-      raw: ls -alrt
+      remote_user: postgres
+      raw: psql -l | grep tododb | wc -l
       register: result
     - name: Return value
       debug:
-        msg: " {{ result.stdout }}"
+        msg: "{{ result.stdout | trim }}"
+    - name: Create database
+      delegate_to: db
+      remote_user: postgres
+      raw: psql -c 'create database tododb;'
+      when:  result.stdout | trim | int == 0
+    - name: Insert data
+      delegate_to: db
+      remote_user: postgres
+      raw: psql tododb -f /tmp/todos.sql
+      when: result.stdout | trim | int == 0
+    - name: Start Pgadmin4
+      docker_container:
+        name: 'pgadmin'
+        image: dpage/pgadmin4
+        state: 'started'
+        env:
+          PGADMIN_DEFAULT_EMAIL: ambient-it@gmail.com
+          PGADMIN_DEFAULT_PASSWORD: p4ssw0rd
+        ports:
+          - "21000:80"
+        links:
+          - "db:postgresql"
+      tags:
+      - pgadmin
+    - name: Build image todo
+      docker_image:
+        name: 'todo'
+        build:
+          path: .
+        source: build
+      tags:
+        - build
+    - name: Create todoapplication container
+      docker_container:
+        name: 'todoapplication'
+        image: todo
+        state: 'started'
+        ports:
+          - "25000:5000"
+        links:
+          - "db:postgresql"
+    - name: Create a network
+      docker_network:
+        name: network_one
+        connected:
+          - db
+          - pgadmin
+          - todoapplication
+
+
 
 
 
