@@ -42,7 +42,7 @@
       register: result
     - name: Return value
       debug:
-        var: result
-        verbosity: 2
+        msg: " {{ result.stdout }}"
+
 
 
