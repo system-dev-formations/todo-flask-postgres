@@ -7,7 +7,7 @@ app = Flask(__name__)
 app.config.from_pyfile('todo.cfg')
 db = SQLAlchemy(app)
 
-
+#--
 class Todo(db.Model):
     __tablename__ = 'todos'
     id = db.Column('todo_id', db.Integer, primary_key=True)

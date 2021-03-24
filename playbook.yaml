@@ -9,7 +9,7 @@
         env:
           POSTGRESQL_PASSWORD: 'password'
         ports:
-          - "5432:5432"
+          - "6432:5432"
       register: db_cont_metadata
     - name: Get infos on container
       docker_container_info:
