@@ -1,13 +1,13 @@
 ---
 - hosts: all
   tasks:
-    - name: Start postgresql 12.2
+    - name: Start postgresql latest version
       docker_container:
         name: 'db'
-        image: systemdevformations/docker-postgres12
+        image: postgres
         state: 'started'
         env:
-          POSTGRESQL_PASSWORD: 'password'
+          POSTGRES_PASSWORD: 'password' # Beware: in some version is POSTGRESQL_PASSWORD
         ports:
           - "6432:5432"
         volumes:
