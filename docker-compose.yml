@@ -9,7 +9,7 @@ services:
       hostname: todo
       build: .
       ports:
-        - 5000:5000
+        - 25000:5000
       links:
         - db:postgres
       depends_on:

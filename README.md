@@ -106,3 +106,17 @@ In the directory todo-flask-mysql, type
 ```docker-compose up ```   for frontend usage
 or  
 ```docker-compose up -d```   for background usage
+
+
+#- NOTE pour Ubuntu 16.04 ----
+```shell
+rm -Rf venv
+python3 -m venv venv
+source venv/bin/activate
+pip install --upgrade "pip < 21.0"
+pip install wheel
+pip install docker
+pip install docker-compose
+pip3 install ansible
+
+```
