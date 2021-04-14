@@ -29,4 +29,6 @@
           - containerd.io
     - name: Set current user to docker group
       command: usermod -aG docker ubuntu
-
+    - name: Install pip docker package
+      pip:
+        name: docker
