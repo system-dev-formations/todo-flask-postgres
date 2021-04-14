@@ -128,3 +128,6 @@ venv.bak/
 .~
 .directory
 *.retry
+
+# Ansible
+inventory

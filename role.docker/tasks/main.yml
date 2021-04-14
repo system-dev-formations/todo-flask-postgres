@@ -1,0 +1,36 @@
+---
+# tasks for role.docker
+- name: Install require packages
+  become: true
+  yum: name={{item}} state=present update_cache=yes
+  with_items:
+    - yum-utils
+    - device-mapper-persistent-data
+    - lvm2
+- name: Add docker repo
+  command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+  changed_when: false
+- name: Add ce edge
+  command:  yum-config-manager --enable docker-ce-edge
+  changed_when: false
+- name: Add ce test
+  command:  yum-config-manager --enable docker-ce-test
+  changed_when: false
+- name: Add docker package
+  yum: name=docker-ce state=present update_cache=yes
+- name: service docker start
+  service: name=docker state=started enabled=yes
+- name: Install epel
+  yum: name=epel-release state=present update_cache=yes
+- name:  install monitoring
+  yum: name={{item}} state=present update_cache=yes
+  with_items:
+    - htop
+    - iotop
+    - iftop
+- name: install python pip
+  yum: name=python-pip state=present update_cache=yes
+- name: change user's group
+  user:
+    name: centos
+    groups: docker, wheel
