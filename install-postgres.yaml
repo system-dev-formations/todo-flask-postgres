@@ -13,7 +13,7 @@
       register: image_id
       ignore_errors: yes
     - name: Delete image if exists
-      shell:  docker rmi -f  $(docker images |grep 'systemdevformations/docker-postgres12')
+      shell: docker rmi -f  $(docker images |grep 'systemdevformations/docker-postgres12')
       when: image_id.stdout != ""
       ignore_errors: yes
     - name: Start db container
