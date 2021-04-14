@@ -1,0 +1,32 @@
+---
+- hosts: all
+  tasks:
+    - name: Build image todo
+      docker_image:
+        name: 'todo'
+        build:
+          path: .
+        source: build
+      tags:
+        - build
+    - name: Create todoapplication container
+      docker_container:
+        name: 'todoapplication'
+        image: todo
+        state: 'started'
+        ports:
+          - "25000:5000"
+        links:
+          - "db:postgresql"
+    - name: Create a network
+      docker_network:
+        name: network_one
+        connected:
+          - db
+          - pgadmin
+          - todoapplication
+
+
+
+
+
