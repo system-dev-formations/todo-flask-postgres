@@ -13,3 +13,16 @@
         name: db
         ansible_connection: docker
       changed_when: false
+    - name: run command in container db
+      delegate_to: db
+      remote_user: postgres
+      raw: psql -l | grep tododb | wc -l
+      register: result
+    - name: Return value
+      debug:
+        msg: "{{ result.stdout | trim }}"
+    - name: Create database
+      delegate_to: db
+      remote_user: postgres
+      raw: psql -c 'create database tododb;'
+      when: result.stdout | trim | int == 0
