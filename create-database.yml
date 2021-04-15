@@ -1,0 +1,11 @@
+---
+- name: Install Postgresql for AWX
+  hosts: all, !local
+  tasks:
+    - name: Set up todos.sql script in docker container
+      shell: docker cp ./sql/todos.sql db:/tmp
+    - name: Add container db to in-memory inventory
+      add_host:
+        name: db
+        ansible_connection: docker
+      changed_when: false
