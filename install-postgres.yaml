@@ -1,6 +1,6 @@
 ---
 - name: Install Postgresql for AWX
-  hosts: all
+  hosts: all, !local
   tasks:
     - name: Docker test exists
       shell: docker ps --all --quiet --filter=name="db"

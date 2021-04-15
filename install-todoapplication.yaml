@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: all, !local
   tasks:
     - name: Build image todo
       docker_image:
