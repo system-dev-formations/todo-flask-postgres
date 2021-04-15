@@ -5,9 +5,9 @@
     - name: install repo
       ansible.builtin.git:
         repo: https://github.com/system-dev-formations/todo-flask-postgres.git
-        dest: /home/{{ ansible_user }}
+        dest: /home/{{ ansible_user }}/todo-flask-postgres
     - name: Set up todos.sql script in docker container
-      shell: docker cp /home/{{ ansible_user }}/sql/todos.sql db:/tmp
+      shell: docker cp /home/{{ ansible_user }}/todo-flask-postgres/sql/todos.sql db:/tmp
     - name: Add container db to in-memory inventory
       add_host:
         name: db
