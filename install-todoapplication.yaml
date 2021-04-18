@@ -18,13 +18,13 @@
           - "25000:5000"
         links:
           - "db:postgresql"
-    - name: Create a network
-      docker_network:
-        name: network_one
-        connected:
-          - db
-          - pgadmin
-          - todoapplication
+    #- name: Create a network
+    #  docker_network:
+    #    name: network_one
+    #   connected:
+    #     - db
+    #     - pgadmin
+    #     - todoapplication
 
 
 
