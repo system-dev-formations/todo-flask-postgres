@@ -1,0 +1,22 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: Create todoapplication container
+      docker_container:
+        name: 'db'
+        image: postgres
+        state: 'started'
+        env:
+          POSTGRES_PASSWORD: 'password' # Beware: in some version is POSTGRESQL_PASSWORD
+        ports:
+          - "6432:5432"
+        volumes:
+          - "/opt/postgres:/var/lib/postgresql/data
+      register: db_cont_metadata
+
+
+
+
+
+
