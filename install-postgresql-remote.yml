@@ -5,7 +5,7 @@
     - name: Create postgresql container
       docker_container:
         name: 'db'
-        image: postgres
+        image: systemdevformations/docker-postgres12
         state: 'started'
         env:
           POSTGRES_PASSWORD: 'password' # Beware: in some version is POSTGRESQL_PASSWORD
@@ -14,14 +14,36 @@
         volumes:
           - "/opt/postgres:/var/lib/postgresql/data"
       register: db_cont_metadata
+    - name: Get infos on container
+      docker_container_info:
+        name: 'db'
+      register: result
+    - name: Does container exist?
+      debug:
+        msg: "The container {{ 'exist' if result.exists else 'does not exist' }}"
+    - name: IP address
+      debug:
+        msg: "{{result.container.NetworkSettings.IPAddress}}"
+    - name: wait for postgres to accept connections
+      wait_for:
+        host: "{{ result.container.NetworkSettings.IPAddress }}"
+        port: 5432
+        state: 'drained' # will check for active connection
+        connect_timeout: 1
+        timeout: 30  # maximum number of seconds to wait for
+      register: postgresql_running
+      until: postgresql_running is success
+      retries: 10
+    - name: Set up todos.sql script in docker container
+      shell: docker cp ./sql/todos.sql db:/tmp
     - name: Add container db to in-memory inventory
       add_host:
         name: db
-        ansible_user: postgres
         ansible_connection: docker
       changed_when: false
     - name: run command in container db
       delegate_to: db
+      remote_user: postgres
       raw: psql -l | grep tododb | wc -l
       register: result
     - name: Return value
@@ -29,8 +51,10 @@
         msg: "{{ result.stdout | trim }}"
     - name: Create database
       delegate_to: db
+      remote_user: postgres
       raw: psql -c 'create database tododb;'
-      when: result.stdout | trim | int == 0
+      when:  result.stdout | trim | int == 0
+
 
 
 
