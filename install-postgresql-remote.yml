@@ -34,8 +34,6 @@
       register: postgresql_running
       until: postgresql_running is success
       retries: 10
-    - name: Set up todos.sql script in docker container
-      shell: docker cp ./sql/todos.sql db:/tmp
     - name: Add container db to in-memory inventory
       add_host:
         name: db
