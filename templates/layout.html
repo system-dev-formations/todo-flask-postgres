@@ -1,6 +1,7 @@
 <!doctype html>
 <title>SQLAlchemy Todo</title>
 <h1>SQLAlchemy Todo</h1>
+<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 {%- for category, message in get_flashed_messages(with_categories=true) %}
   <p class="flask {{ category }}-flash">{{
     "Error: " if category == 'error' }}{{ message }}</p>

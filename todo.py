@@ -1,6 +1,7 @@
 from datetime import datetime
+import os
 from flask import Flask, request, flash, url_for, redirect, \
-     render_template
+     render_template,send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -29,6 +30,10 @@ def show_all():
         todos=Todo.query.order_by(Todo.pub_date.desc()).all()
     )
 
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 @app.route('/new', methods=['GET', 'POST'])
 def new():

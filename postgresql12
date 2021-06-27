@@ -1,0 +1,3 @@
+FROM systemdevformations/docker-postgres12
+USER postgres
+
