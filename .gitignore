@@ -131,3 +131,8 @@ venv.bak/
 
 # Ansible
 #inventory
+
+# db
+words.dat
+words.txt
+convert_words.py

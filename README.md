@@ -93,13 +93,12 @@ pip3 install wheel
 pip3 install docker-compose
 ```
 ## On Centos
-```code 
+```shell
 sudo yum install python3
 sudo yum install python3-pip
 python3 -m venv venv
 source venv/bin/activate
 pip3 install docker-compose
-
 ```
 ## Execute
 In the directory todo-flask-mysql, type   
@@ -108,7 +107,7 @@ or
 ```docker-compose up -d```   for background usage
 
 
-#- NOTE pour Ubuntu 16.04 ----
+###- NOTE pour Ubuntu 16.04 ----
 ```shell
 rm -Rf venv
 python3 -m venv venv
@@ -120,3 +119,7 @@ pip install docker-compose
 pip3 install ansible
 
 ```
+
+### Postgres 13
+docker run -d --name db1 -e POSTGRES_PASSWORD=password  -v /opt/postgres13:/var/lib/postgresql/data \
+-p 7432:5432  postgres13
