@@ -9,7 +9,7 @@ services:
       hostname: todo
       build: .
       ports:
-        - 25000:5000
+        - 32500:5000
       links:
         - db:postgres
       depends_on:
@@ -42,6 +42,6 @@ services:
     volumes:
       - /opt/postgres:/var/lib/postgresql/data
     ports:
-      - 6432:5432
+      - 32432:5432
     networks:
       -  lan_network

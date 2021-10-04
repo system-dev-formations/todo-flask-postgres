@@ -65,7 +65,7 @@ Build todo-sql image
   
 After type in your shell console  
 ```code 
-docker run -it -d --name todo --link db:todo -p 5000:5000 todo-postgres
+docker run -it -d --name todo --link db:todo -p 32500:5000 todo-postgres
 ```
 
 # Test
