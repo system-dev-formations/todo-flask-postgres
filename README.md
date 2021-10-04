@@ -26,7 +26,7 @@ as an IP address entry. So for connecting to postgresql database use the contain
 ```shell
 cd todo-flask-postgres
 cd sql
-docker cp todo.sql db:/tmp
+docker cp todos.sql db:/tmp
 docker exec -it db /bin/ash
 cd tmp
 ls 
