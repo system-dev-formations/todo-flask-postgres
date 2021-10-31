@@ -69,7 +69,7 @@ docker run -it -d --name todo --link db:todo -p 32500:5000 todo-postgres
 ```
 
 # Test
-Bring up your favorite browser   
+Bring up your favorite browser   c
 ``` http://localhost:5000/```
 and check the connectivity
 
@@ -101,7 +101,7 @@ source venv/bin/activate
 pip3 install docker-compose
 ```
 ## Execute
-In the directory todo-flask-mysql, type   
+In the directory todo-flask-postgres, type   
 ```docker-compose up ```   for frontend usage
 or  
 ```docker-compose up -d```   for background usage
