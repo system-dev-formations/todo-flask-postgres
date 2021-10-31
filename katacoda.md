@@ -14,3 +14,8 @@ ansible --version
 ansible-playbook -i inventory playbook.yml 
 ansible-playbook -i inventory install-todoapplication.yaml
 ```
+## Kubernetes 
+```shell
+https://www.katacoda.com/hmeftah/scenarios/tp-kubernetes-esiea
+
+```
