@@ -10,6 +10,7 @@ source venv/bin/activate
 pip3 install wheel
 pip3 install ansible
 pip3 install docker-compose
+ansible --version
 ansible-playbook -i inventory playbook.yml 
 ansible-playbook -i inventory install-todoapplication.yaml
 ```
