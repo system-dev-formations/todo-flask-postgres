@@ -1,6 +1,8 @@
 ---
 - hosts: local
   become: true
+  vars:
+    ansible_python_interpreter: python3
   tasks:
     - name: Build image todo
       docker_image:
