@@ -1,9 +1,10 @@
 #  Katacoda.md for users
+https://www.katacoda.com/hmeftah/scenarios/tp-esiea-novembre-2021
 
-## Pre-requis
 ```shell
 git clone  https://github.com/system-dev-formations/todo-flask-postgres.git
 cd todo-flask-postgres/
+apt update
 apt install python3 python3-venv
 python3 -m venv venv
 source venv/bin/activate
