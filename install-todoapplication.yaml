@@ -1,6 +1,5 @@
 ---
 - hosts: local
-  become: true
   vars:
     ansible_python_interpreter: python3
   tasks:
@@ -21,6 +20,9 @@
           - "25000:5000"
         links:
           - "db:postgresql"
+      tags:
+        - docker_run
+
     #- name: Create a network
     #  docker_network:
     #    name: network_one

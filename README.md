@@ -69,7 +69,7 @@ docker run -it -d --name todo --link db:todo -p 32500:5000 todo-postgres
 ```
 
 # Test
-Bring up your favorite browser   c
+Bring up your favorite browser
 ``` http://localhost:5000/```
 and check the connectivity
 
@@ -98,7 +98,7 @@ sudo yum install python3
 sudo yum install python3-pip
 python3 -m venv venv
 source venv/bin/activate
-pip3 install docker-compose
+pip3 install docker-compose   # should be version 1.29.2
 ```
 ## Execute
 In the directory todo-flask-postgres, type   
