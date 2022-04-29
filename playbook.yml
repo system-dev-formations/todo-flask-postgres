@@ -6,7 +6,7 @@
     - name: Start postgresql latest version
       docker_container:
         name: 'db'
-        image: postgres
+        image: systemdevformations/docker-postgres12
         state: 'started'
         env:
           POSTGRES_PASSWORD: 'password' # Beware: in some version is POSTGRESQL_PASSWORD
