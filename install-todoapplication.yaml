@@ -17,7 +17,7 @@
         image: todo
         state: 'started'
         ports:
-          - "25000:5000"
+          - "32500:5000"
         links:
           - "db:postgresql"
       tags:
