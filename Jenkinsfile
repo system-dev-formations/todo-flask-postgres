@@ -16,10 +16,7 @@ pipeline {
 
     stage('sonar scanner') {
       steps {
-        withSonarQubeEnv(installationName: 'SonarQube', credentialsId: 'sonar', envOnly: true) {
-          waitForQualityGate(credentialsId: 'sonar', webhookSecretId: 'sonar')
-        }
-
+        withSonarQubeEnv(installationName: 'SonarQube', credentialsId: 'sonar', envOnly: true)
       }
     }
 
