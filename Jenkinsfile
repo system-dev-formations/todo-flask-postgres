@@ -12,7 +12,6 @@ pipeline {
                 cleanWs()
                 // Get some code from a GitHub repository
                 git ' https://github.com/system-dev-formations/todo-flask-postgres.git '
-
             }
         }
         stage('SonarQube analysis') {
