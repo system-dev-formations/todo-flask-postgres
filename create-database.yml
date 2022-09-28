@@ -37,7 +37,6 @@
       retries: 10
     - name: Add container db to in-memory inventory
       add_host:
-        delegate_to: "{{ ansible_ssh_host }}"
         name: db
         ansible_connection: docker
       changed_when: false

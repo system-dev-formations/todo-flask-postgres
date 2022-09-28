@@ -16,6 +16,7 @@
           - software-properties-common
           - python3-pip
           - python3-venv
+          - ansible
     - name: Add official GPG key
       shell: curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
     - name: add specificed repository into source list
