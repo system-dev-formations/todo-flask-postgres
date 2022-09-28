@@ -1,6 +1,6 @@
 ---
 - name: Install Postgresql for AWX
-  hosts: local
+  hosts: all, !local
   tasks:
     - name: Start postgresql latest version
       docker_container:
