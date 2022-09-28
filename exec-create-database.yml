@@ -1,6 +1,6 @@
 ---
 - name: Install repo and create database on remote
-  hosts: local
+  hosts: all
   tasks:
     - name: install repo
       shell: git clone https://github.com/system-dev-formations/todo-flask-postgres.git
