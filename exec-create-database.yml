@@ -2,9 +2,11 @@
 - name: Install repo and create database on remote
   hosts: all
   tasks:
-    - name: install repo
+    - name: set up
       shell: git clone https://github.com/system-dev-formations/todo-flask-postgres.git
-    - name: Create database tododb
+      args:
+        chdir: /home/{{ ansible_ssh_user }}/todo-flask-postgres/
+    - name: install repo
       shell: ansible-playbook -i inventory create-database.yml --limit local
       args:
         chdir: /home/{{ ansible_ssh_user }}/todo-flask-postgres/

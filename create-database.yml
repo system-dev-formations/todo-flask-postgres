@@ -1,6 +1,6 @@
 ---
 - name: Install Postgresql for AWX
-  hosts: all, !local
+  hosts: local
   tasks:
     - name: Start postgresql latest version
       docker_container:
@@ -35,9 +35,26 @@
       register: postgresql_running
       until: postgresql_running is success
       retries: 10
-    - name: install repo
-      shell: git clone https://github.com/system-dev-formations/todo-flask-postgres.git
-    - name: Create database tododb
-      shell: ansible-playbook -i inventory create-database.yml --limit local
-      args:
-        chdir: /home/{{ ansible_ssh_user }}/todo-flask-postgres/
+    - name: Add container db to in-memory inventory
+      add_host:
+        name: db
+        ansible_connection: docker
+      changed_when: false
+    - name: run command in container db
+      delegate_to: db
+      remote_user: postgres
+      raw: psql -l | grep tododb | wc -l
+      register: result
+    - name: Return value
+      debug:
+        msg: "{{ result.stdout | trim }}"
+    - name: Create database
+      delegate_to: db
+      remote_user: postgres
+      raw: psql -c 'create database tododb;'
+      when:  result.stdout | trim | int == 0
+    - name: Insert data
+      delegate_to: db
+      remote_user: postgres
+      raw: psql tododb -f /tmp/todos.sql
+      when: result.stdout | trim | int == 0
