@@ -3,10 +3,11 @@
   hosts: all
   tasks:
     - name: set up current repo
-      git: https://github.com/system-dev-formations/todo-flask-postgres.git
-      dest: /home/{{ ansible_ssh_user }}
-      update: yes
-      version: master
+      git:
+        repo: https://github.com/system-dev-formations/todo-flask-postgres.git
+        dest: /home/{{ ansible_ssh_user }}
+        update: yes
+        version: master
     - name: run install postgresql container and check
       shell: ansible-playbook -i inventory create-database.yml --limit local
       args:
