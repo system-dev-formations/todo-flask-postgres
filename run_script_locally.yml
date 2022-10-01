@@ -5,7 +5,7 @@
     - name: set up
       shell: git clone https://github.com/system-dev-formations/todo-flask-postgres.git
       args:
-        chdir: /home/{{ ansible_ssh_user }}/todo-flask-postgres/
+        chdir: /home/{{ ansible_ssh_user }}
     - name: install repo
       shell: ansible-playbook -i inventory create-database.yml --limit local
       args:
