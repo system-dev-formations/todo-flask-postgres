@@ -5,7 +5,7 @@
     - name: set up current repo
       git:
         repo: https://github.com/system-dev-formations/todo-flask-postgres.git
-        dest: /home/{{ ansible_ssh_user }}
+        dest: /home/{{ ansible_ssh_user }}/todo-flask-postgres
         force: yes
         update: yes
         version: master
