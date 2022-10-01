@@ -6,6 +6,7 @@
       git:
         repo: https://github.com/system-dev-formations/todo-flask-postgres.git
         dest: /home/{{ ansible_ssh_user }}
+        force: yes
         update: yes
         version: master
     - name: run install postgresql container and check
