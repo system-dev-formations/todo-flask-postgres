@@ -1,0 +1,6 @@
+---
+- name: Install hello world remotely
+  hosts: all
+  tasks:
+    - name: Install hello-world
+      shell: docker run -d --name hello-world-test -p 18090:8080 systemdevformations/hello-world-afip
