@@ -6,15 +6,21 @@ Get this repository
 ```git clone https://github.com/system-dev-formations/todo-flask-postgres.git```  
 Do a fork and git clone in your local host where your IDE is installed and in your Vm
 
-## How to set up the environment platform
+## How to set up the containers environment 
+
+### Create a volume 
+```shell
+docker volume create data
+docker volume ls
+```
 Start the Postgresql database container   
 ```shell script
-docker run -d --name db -e POSTGRES_PASSWORD=password  -v /opt/postgres:/var/lib/postgresql/data \
-  -p 6432:5432  systemdevformations/docker-postgres12
+docker run -d --name db -e POSTGRES_PASSWORD=password  -v data:/bitname/postgresql \
+  -p 30452:5432 bitnami/postgresql  
 ```
 Launch the PgAdmin 4 container connected to the Postgresql database
 ```shell script
-docker run -d --name pgadmin -p 20100:80 --link db:postgres -e PGADMIN_DEFAULT_EMAIL=ambient-it@gmail.com \
+docker run -d --name pgadmin -p 30100:80 --link db:postgres -e PGADMIN_DEFAULT_EMAIL=ambient-it@gmail.com \
 -e PGADMIN_DEFAULT_PASSWORD=p4ssw0rd dpage/pgadmin4
 ```
 Study the way how to set up the database connection using the Docker internal DNS container name 
@@ -70,7 +76,7 @@ docker run -it -d --name todo --link db:todo -p 32500:5000 todo-postgres
 
 # Test
 Bring up your favorite browser
-``` http://localhost:5000/```
+``` http://localhost:325000/```
 and check the connectivity
 
 # Docker-compose version 

@@ -131,6 +131,7 @@ venv.bak/
 
 # Ansible
 #inventory
+platinum*
 
 # db
 words.dat

@@ -12,7 +12,10 @@ echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.clou
 
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 sudo apt-get update && sudo apt-get install google-cloud-cli
+```
 
-
+## OS login in GCP for ansible
+```shell
+gcloud iam service-accounts create ansible-sa  --display-name "Service account for Ansible"
 
 ```
