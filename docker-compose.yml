@@ -1,5 +1,9 @@
 version: '3'
 
+volumes:
+  data:
+
+
 networks:
   lan_network:
     driver: bridge
@@ -14,8 +18,6 @@ services:
         - db:postgres
       depends_on:
         - db
-      volumes:
-        - ./sql:/tmp
       networks:
         -  lan_network
 
@@ -27,7 +29,7 @@ services:
     depends_on:
       - db
     ports:
-      - 20100:80
+      - 30100:80
     environment:
       PGADMIN_DEFAULT_EMAIL: ambient-it@gmail.com
       PGADMIN_DEFAULT_PASSWORD: p4ssw0rd
@@ -36,11 +38,12 @@ services:
 
   db:
     hostname: postgres
-    image: systemdevformations/docker-postgres12
+    image: bitnami/postgresql
     environment:
       POSTGRES_PASSWORD: password
     volumes:
-      - /opt/postgres:/var/lib/postgresql/data
+      - data:/bitnami/postgresql
+      - ./sql:/tmp
     ports:
       - 32432:5432
     networks:

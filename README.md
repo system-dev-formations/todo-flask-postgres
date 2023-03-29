@@ -15,7 +15,7 @@ docker volume ls
 ```
 Start the Postgresql database container   
 ```shell script
-docker run -d --name db -e POSTGRES_PASSWORD=password  -v data:/bitname/postgresql \
+docker run -d --name db -e POSTGRES_PASSWORD=password  -v data:/bitnami/postgresql \
   -p 30452:5432 bitnami/postgresql  
 ```
 Launch the PgAdmin 4 container connected to the Postgresql database
@@ -76,7 +76,7 @@ docker run -it -d --name todo --link db:todo -p 32500:5000 todo-postgres
 
 # Test
 Bring up your favorite browser
-``` http://localhost:325000/```
+``` http://localhost:32500/```
 and check the connectivity
 
 # Docker-compose version 
@@ -129,3 +129,7 @@ pip3 install ansible
 ### Postgres 13
 docker run -d --name db1 -e POSTGRES_PASSWORD=password  -v /opt/postgres13:/var/lib/postgresql/data \
 -p 7432:5432  postgres13
+
+### Portainer
+docker volume create portainer_data
+docker run -d -p 32125:8000 -p 32126:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest

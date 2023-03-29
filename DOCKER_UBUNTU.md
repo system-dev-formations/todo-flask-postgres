@@ -14,8 +14,8 @@ Crtl-c  # exit
 ``` 
 ## Install docker Community-Edition
 ```shell script
-git clone  https://github.com/<votre_repo_perso>/puppet.git
-cd docker-aston-poec
+git clone  https://github.com/<votre_repo_perso>/todo-flask-postgres.git
+cd todo-flask-postgres
 python3 -m venv venv  # set up the module venv in the directory venv
 source venv/bin/activate  # activate the virtualenv python
 pip install --upgrade pip
