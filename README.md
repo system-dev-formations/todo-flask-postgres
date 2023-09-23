@@ -76,7 +76,7 @@ docker run -it -d --name todo --link db:todo -p 32500:5000 todo-postgres
 
 # Test
 Bring up your favorite browser
-``` http://localhost:32500/```
+``` http://<ip>:32500/```
 and check the connectivity
 
 # Docker-compose version 
@@ -85,10 +85,10 @@ We are going to setup a python virtualenv
 ### Packages, virtualenv, activate  
 ```code
 sudo apt-get install python3
-sudo apt-get install python3-pip
-sudo apt-get install python3-venv
+sudo apt-get -y install python3-pip
+sudo apt-get -y install python3-venv
 sudo apt-get -y install build-essential
-sudo apt-get install python3-dev libxml2-dev libxslt-dev libffi-dev
+sudo apt-get -y install python3-dev libxml2-dev libxslt-dev libffi-dev
 python3 -m venv venv
 source venv/bin/activate
 ```

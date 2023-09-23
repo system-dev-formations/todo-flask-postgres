@@ -43,7 +43,7 @@ services:
       POSTGRES_PASSWORD: password
     volumes:
       - data:/bitnami/postgresql
-      - ./sql:/tmp
+      #- ./sql:/tmp
     ports:
       - 32432:5432
     networks:

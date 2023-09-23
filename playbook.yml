@@ -11,7 +11,7 @@
         env:
           POSTGRES_PASSWORD: 'password' # Beware: in some version is POSTGRESQL_PASSWORD
         ports:
-          - "6432:5432"
+          - "30432:5432"
         volumes:
           - "/opt/postgres:/var/lib/postgresql/data"
           #- "./sql:/tmp"
@@ -39,7 +39,7 @@
     - name: Set up todos.sql script in docker container
       shell: docker cp ./sql/todos.sql db:/tmp
     - name: Add container db to in-memory inventory
-      add_hos:t:
+      add_host:
         name: db
         ansible_connection: docker
       changed_when: false
@@ -70,7 +70,7 @@
           PGADMIN_DEFAULT_EMAIL: ambient-it@gmail.com
           PGADMIN_DEFAULT_PASSWORD: p4ssw0rd
         ports:
-          - "21000:80"
+          - "31000:80"
         links:
           - "db:postgresql"
       tags:
