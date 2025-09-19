@@ -1,7 +1,6 @@
-version: '3'
-
 volumes:
   data:
+  portainer_data:
 
 
 networks:
@@ -11,6 +10,7 @@ networks:
 services:
   todoapplication:
       hostname: todo
+      container_name: todo
       build: .
       ports:
         - 32500:5000
@@ -23,9 +23,8 @@ services:
 
   pgadmin:
     hostname: pgadmin
+    container_name: pgadmin
     image: dpage/pgadmin4
-    links:
-      - db:postgres
     depends_on:
       - db
     ports:
@@ -38,13 +37,26 @@ services:
 
   db:
     hostname: postgres
-    image: bitnami/postgresql
+    container_name: db
+    image: bitnamilegacy/postgresql:17.6.0-debian-12-r4
     environment:
       POSTGRES_PASSWORD: password
     volumes:
       - data:/bitnami/postgresql
       #- ./sql:/tmp
     ports:
-      - 32432:5432
+      - 30432:5432
     networks:
       -  lan_network
+
+  portainer:
+      hostname: portainer
+      container_name: portainer
+      image: portainer/portainer-ce:2.27.0-alpine
+      restart: always
+      volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
+      ports:
+          - 32125:8000
+          - 32126:9443
+

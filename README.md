@@ -16,7 +16,7 @@ docker volume ls
 Start the Postgresql database container   
 ```shell script
 docker run -d --name db -e POSTGRES_PASSWORD=password  -v data:/bitnami/postgresql \
-  -p 30452:5432 bitnami/postgresql  
+  -p 30452:5432 bitnamilegacy/postgresql:17.6.0-debian-12-r4
 ```
 Launch the PgAdmin 4 container connected to the Postgresql database
 ```shell script
